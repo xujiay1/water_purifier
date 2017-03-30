@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="provinces_array">
+        <item>北京市</item>
+        <item>天津市</item>
+        <item>上海市</item>
+        <item>重庆市</item>
+        <item>浙江省</item>
+        <item>江苏省</item>
+        <item>安徽省</item>
+        <item>江西省</item>
+    </string-array>
+</resources>

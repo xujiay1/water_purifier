@@ -29,9 +29,7 @@ public class TabGeometry extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.geometry_cube, container, false);
 
-        tv_vol = (TextView) v.findViewById(R.id.volume);
-        tv_luas = (TextView) v.findViewById(R.id.area);
-        tv_kel = (TextView)v.findViewById(R.id.kel);
+
 
 
 

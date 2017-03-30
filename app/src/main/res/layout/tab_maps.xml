@@ -28,62 +28,106 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:weightSum="1">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="10dp"
+                        android:paddingLeft="20dp"
+                        android:paddingRight="20dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView1"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:text="省份："
+                                android:textAlignment="viewEnd" />
+
+                            <Spinner
+                                android:id="@+id/spin_province"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_weight="1" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:text="市："
+                                android:textAlignment="viewEnd" />
+
+                            <Spinner
+                                android:id="@+id/spin_city"
+                                android:layout_width="wrap_content"
+                                android:layout_height="35dp"
+                                android:layout_weight="1" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:id="@+id/textView2"
+                                android:layout_width="80dp"
+                                android:layout_height="35dp"
+                                android:text="小区名称"
+                                android:textAlignment="viewEnd" />
+
+                            <EditText
+                                android:id="@+id/editText"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:ems="10"
+                                android:inputType="textPersonName" />
+
+                        </LinearLayout>
+
+                        <Button
+                            android:id="@+id/checkwater"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="查询水质" />
+
+                    </LinearLayout>
 
                     <ImageView
                         android:layout_width="match_parent"
-                        android:layout_height="160dp"
+                        android:layout_height="300dp"
+                        android:layout_weight="0.54"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/qw" />
+                        android:src="@drawable/waterqmap" />
 
                     <com.pixplicity.fontview.FontAppCompatTextView
                         style="@style/FontTextViewStyle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginTop="32dp"
                         android:layout_marginBottom="16dp"
-                        android:text="Red Flowers"
-                        android:textSize="15dp"
-                        android:textStyle="bold" />
-
-                    <com.pixplicity.fontview.FontAppCompatTextView
-                        style="@style/FontTextViewStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:layout_marginLeft="32dp"
-                        android:layout_marginBottom="16dp"
                         android:layout_marginRight="32dp"
+                        android:layout_marginTop="10dp"
+                        android:text="资料来源："
+                        android:textAlignment="center"
                         android:textColor="#565656"
-                        android:text="@string/deskripsi"
-                        android:textSize="13dp"/>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="32dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="32dp"
-                        android:background="@drawable/comment"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:src="@drawable/ic_message_text_outline_black_48dp"
-                            android:tint="#979797"/>
-
-                        <com.pixplicity.fontview.FontAppCompatTextView
-                            style="@style/FontTextViewStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginLeft="16dp"
-                            android:text="12 Comments"
-                            android:textSize="12dp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
+                        android:textSize="13dp" />
 
                 </LinearLayout>
 
