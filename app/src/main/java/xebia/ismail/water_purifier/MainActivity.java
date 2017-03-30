@@ -20,7 +20,7 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 
-import xebia.ismail.water_purifier.fragment.HomeFragment;
+import xebia.ismail.water_purifier.fragment.SearchLocationFragment;
 import xebia.ismail.water_purifier.fragment.TabGeoCone;
 import xebia.ismail.water_purifier.fragment.TabGeometry;
 import xebia.ismail.water_purifier.fragment.VolumeFragment;
@@ -117,7 +117,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_2:
                 mPrevSelectedId = itemId;
                 setTitle("水质查询");
-                navFragment = new HomeFragment();
+                navFragment = new SearchLocationFragment();
                 break;
             case R.id.nav_3:
                 mPrevSelectedId = itemId;
@@ -197,5 +197,12 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, WaterQualityActivity.class);
+        //  EditText et = (EditText) getActivity().findViewById(R.id.editText);
+        // String locationMsg = provinceSpinner.getSelectedItem().toString()+citySpinner.getSelectedItem().toString()+et.getText().toString();
+        // intent.putExtra(EXTRA_MESSAGE, locationMsg);
+        startActivity(intent);
     }
 }

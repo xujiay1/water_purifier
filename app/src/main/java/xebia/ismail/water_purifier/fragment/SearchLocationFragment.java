@@ -1,5 +1,6 @@
 package xebia.ismail.water_purifier.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -8,16 +9,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import xebia.ismail.water_purifier.MainActivity;
 import xebia.ismail.water_purifier.R;
+import xebia.ismail.water_purifier.WaterQualityActivity;
+
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 /**
  * Created by Admin on 3/13/2017.
  */
-public class HomeFragment extends Fragment {
+public class SearchLocationFragment extends Fragment {
 
     private Spinner provinceSpinner = null;  //省级（省、直辖市）
     private Spinner citySpinner = null;     //地级市
@@ -148,5 +153,8 @@ public class HomeFragment extends Fragment {
             }
         });*/
     }
+
+
+
 }
 
