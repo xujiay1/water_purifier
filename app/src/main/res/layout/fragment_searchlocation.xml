@@ -43,14 +43,6 @@
                             android:layout_height="40dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:id="@+id/textView1"
-                                android:layout_width="80dp"
-                                android:layout_height="35dp"
-                                android:gravity="center_vertical"
-                                android:text="省份："
-                                android:textAlignment="viewEnd" />
-
                             <Spinner
                                 android:id="@+id/spin_province"
                                 android:layout_width="80dp"
@@ -58,7 +50,8 @@
                                 android:layout_weight="1"
                                 android:dropDownWidth="80dp"
                                 android:rotationX="0"
-                                android:rotationY="0" />
+                                android:rotationY="0"
+                                android:spinnerMode="dialog" />
 
                         </LinearLayout>
 
@@ -66,21 +59,14 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/textView2"
-                                android:layout_width="80dp"
-                                android:layout_height="35dp"
-                                android:gravity="center_vertical"
-                                android:text="市："
-                                android:textAlignment="viewEnd" />
 
                             <Spinner
                                 android:id="@+id/spin_city"
                                 android:layout_width="wrap_content"
                                 android:layout_height="35dp"
                                 android:layout_weight="1"
-                                android:gravity="center_vertical" />
+                                android:gravity="center_vertical"
+                                android:spinnerMode="dialog" />
 
                         </LinearLayout>
 
@@ -88,14 +74,6 @@
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
                             android:orientation="horizontal">
-
-                            <TextView
-                                android:id="@+id/textView2"
-                                android:layout_width="80dp"
-                                android:layout_height="35dp"
-                                android:gravity="center_vertical"
-                                android:text="小区名称："
-                                android:textAlignment="viewEnd" />
 
                             <EditText
                                 android:id="@+id/editText"
@@ -103,7 +81,10 @@
                                 android:layout_height="35dp"
                                 android:layout_weight="1"
                                 android:ems="10"
-                                android:inputType="textPersonName" />
+                                android:hint="请输入小区名称"
+                                android:inputType="textPersonName"
+                                android:textAlignment="center"
+                                android:textSize="12sp" />
 
                         </LinearLayout>
 
