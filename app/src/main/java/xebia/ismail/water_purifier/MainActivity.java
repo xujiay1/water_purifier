@@ -21,7 +21,7 @@ import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 
 import xebia.ismail.water_purifier.fragment.SearchLocationFragment;
-import xebia.ismail.water_purifier.fragment.TabGeoCone;
+import xebia.ismail.water_purifier.fragment.FilterManagerFragment;
 import xebia.ismail.water_purifier.fragment.TabGeometry;
 import xebia.ismail.water_purifier.fragment.VolumeFragment;
 
@@ -122,7 +122,7 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_3:
                 mPrevSelectedId = itemId;
                 setTitle("滤芯管理");
-                navFragment = new TabGeoCone();
+                navFragment = new FilterManagerFragment();
                 break;
             //case R.id.nav_5:
             //startActivity(new Intent(this, SettingsActivity.class));

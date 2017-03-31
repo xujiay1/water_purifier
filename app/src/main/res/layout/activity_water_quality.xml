@@ -188,6 +188,7 @@
                     android:layout_margin="40dp"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
+                    android:onClick="sendMessage"
                     android:text="买买买" />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>

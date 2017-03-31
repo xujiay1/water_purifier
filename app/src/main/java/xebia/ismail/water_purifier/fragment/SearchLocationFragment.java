@@ -1,6 +1,5 @@
 package xebia.ismail.water_purifier.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -9,15 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import xebia.ismail.water_purifier.MainActivity;
 import xebia.ismail.water_purifier.R;
-import xebia.ismail.water_purifier.WaterQualityActivity;
-
-import static android.provider.AlarmClock.EXTRA_MESSAGE;
 
 /**
  * Created by Admin on 3/13/2017.
@@ -78,7 +71,7 @@ public class SearchLocationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.tab_maps, container, false);
+        View v = inflater.inflate(R.layout.fragment_searchlocation, container, false);
         return v;
     }
 
@@ -96,9 +89,9 @@ public class SearchLocationFragment extends Fragment {
         //绑定适配器和值
         provinceAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, province);
         provinceSpinner.setAdapter(provinceAdapter);
-        provinceSpinner.setSelection(1,true);  //设置默认选中项，此处为默认选中第4个值
+        provinceSpinner.setSelection(0,true);  //设置默认选中项，此处为默认选中第4个值
 
-        cityAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, city[3]);
+        cityAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, city[0]);
         citySpinner.setAdapter(cityAdapter);
         citySpinner.setSelection(0,true);  //默认选中第0个
 

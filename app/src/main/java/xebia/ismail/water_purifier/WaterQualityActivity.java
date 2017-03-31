@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -29,12 +30,12 @@ public class WaterQualityActivity extends AppCompatActivity  implements View.OnC
             @Override
             public void onLeftClick() {
                 onBackPressed();
-                Toast.makeText(WaterQualityActivity.this, "左边按钮", Toast.LENGTH_LONG).show();
+               // Toast.makeText(WaterQualityActivity.this, "左边按钮", Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onRightClick() {
-                Toast.makeText(WaterQualityActivity.this, "右边按钮", Toast.LENGTH_LONG).show();
+             //   Toast.makeText(WaterQualityActivity.this, "右边按钮", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -50,5 +51,12 @@ public class WaterQualityActivity extends AppCompatActivity  implements View.OnC
                 break;
 
         }
+    }
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, PurifierSolutionsActivity.class);
+        //  EditText et = (EditText) getActivity().findViewById(R.id.editText);
+        // String locationMsg = provinceSpinner.getSelectedItem().toString()+citySpinner.getSelectedItem().toString()+et.getText().toString();
+        // intent.putExtra(EXTRA_MESSAGE, locationMsg);
+        startActivity(intent);
     }
 }

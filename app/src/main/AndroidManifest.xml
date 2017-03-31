@@ -16,8 +16,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".AboutActivity" />
-        <activity android:name=".WaterQualityActivity"
-            android:label="水质查询"></activity>
+        <activity
+            android:name=".WaterQualityActivity"
+            android:label="水质查询" />
+        <activity android:name=".PurifierSolutionsActivity"></activity>
     </application>
 
 </manifest>

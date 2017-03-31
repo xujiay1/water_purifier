@@ -33,6 +33,6 @@ dependencies {
     compile 'com.rengwuxian.materialedittext:library:2.1.4'
     compile 'com.pixplicity.letterpress:library:1.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-alpha9'
-    testCompile 'junit:junit:4.12'
     compile 'com.android.support:gridlayout-v7:25.3.1'
+    testCompile 'junit:junit:4.12'
 }

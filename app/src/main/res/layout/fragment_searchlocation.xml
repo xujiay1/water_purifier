@@ -33,41 +33,45 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="120dp"
                         android:orientation="vertical"
-                        android:paddingBottom="10dp"
                         android:paddingLeft="20dp"
                         android:paddingRight="20dp">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/textView1"
                                 android:layout_width="80dp"
                                 android:layout_height="35dp"
+                                android:gravity="center_vertical"
                                 android:text="省份："
                                 android:textAlignment="viewEnd" />
 
                             <Spinner
                                 android:id="@+id/spin_province"
-                                android:layout_width="wrap_content"
+                                android:layout_width="80dp"
                                 android:layout_height="35dp"
-                                android:layout_weight="1" />
+                                android:layout_weight="1"
+                                android:dropDownWidth="80dp"
+                                android:rotationX="0"
+                                android:rotationY="0" />
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="40dp"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/textView2"
                                 android:layout_width="80dp"
                                 android:layout_height="35dp"
+                                android:gravity="center_vertical"
                                 android:text="市："
                                 android:textAlignment="viewEnd" />
 
@@ -75,49 +79,56 @@
                                 android:id="@+id/spin_city"
                                 android:layout_width="wrap_content"
                                 android:layout_height="35dp"
-                                android:layout_weight="1" />
+                                android:layout_weight="1"
+                                android:gravity="center_vertical" />
 
                         </LinearLayout>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="40dp"
                             android:orientation="horizontal">
 
                             <TextView
                                 android:id="@+id/textView2"
                                 android:layout_width="80dp"
                                 android:layout_height="35dp"
-                                android:text="小区名称"
+                                android:gravity="center_vertical"
+                                android:text="小区名称："
                                 android:textAlignment="viewEnd" />
 
                             <EditText
                                 android:id="@+id/editText"
                                 android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                                android:layout_height="35dp"
                                 android:layout_weight="1"
                                 android:ems="10"
                                 android:inputType="textPersonName" />
 
                         </LinearLayout>
 
-                        <Button
-                            android:id="@+id/checkwater"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:onClick="sendMessage"
-                            android:text="查询水质" />
-
                     </LinearLayout>
 
-                    <ImageView
+                    <Button
+                        android:id="@+id/checkwater"
                         android:layout_width="match_parent"
-                        android:layout_height="300dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="5dp"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
+                        android:onClick="sendMessage"
+                        android:text="查询水质" />
+
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="280dp"
                         android:layout_weight="0.54"
                         android:scaleType="centerCrop"
                         android:src="@drawable/waterqmap" />
 
                     <com.pixplicity.fontview.FontAppCompatTextView
+                        android:id="@+id/fontAppCompatTextView"
                         style="@style/FontTextViewStyle"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
