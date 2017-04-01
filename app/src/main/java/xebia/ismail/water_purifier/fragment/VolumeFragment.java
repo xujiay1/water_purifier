@@ -53,13 +53,13 @@ public class VolumeFragment extends Fragment{
                 case 0:
                     return new TabGeometry();
                 case 1:
-                    return new TabGeoCone();
+                    return new FilterManagerFragment();
                 case 2:
-                    return new TabGeoCone();
+                    return new FilterManagerFragment();
                 case 3:
-                    return new TabGeoCone();
+                    return new FilterManagerFragment();
                 case 4:
-                    return new TabGeoCone();
+                    return new FilterManagerFragment();
             }
             return null;
         }

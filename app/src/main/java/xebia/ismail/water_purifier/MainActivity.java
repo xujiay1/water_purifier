@@ -20,8 +20,8 @@ import android.view.animation.Animation;
 import android.view.animation.Transformation;
 import android.widget.LinearLayout;
 
-import xebia.ismail.water_purifier.fragment.HomeFragment;
-import xebia.ismail.water_purifier.fragment.TabGeoCone;
+import xebia.ismail.water_purifier.fragment.SearchLocationFragment;
+import xebia.ismail.water_purifier.fragment.FilterManagerFragment;
 import xebia.ismail.water_purifier.fragment.TabGeometry;
 import xebia.ismail.water_purifier.fragment.VolumeFragment;
 
@@ -117,21 +117,17 @@ public class MainActivity extends AppCompatActivity
             case R.id.nav_2:
                 mPrevSelectedId = itemId;
                 setTitle("水质查询");
-                navFragment = new HomeFragment();
+                navFragment = new SearchLocationFragment();
                 break;
             case R.id.nav_3:
                 mPrevSelectedId = itemId;
                 setTitle("滤芯管理");
-                navFragment = new TabGeoCone();
+                navFragment = new FilterManagerFragment();
                 break;
             //case R.id.nav_5:
             //startActivity(new Intent(this, SettingsActivity.class));
             //mNavigationView.getMenu().findItem(mPrevSelectedId).setChecked(true);
             //return;
-            case R.id.nav_6:
-                startActivity(new Intent(this, AboutActivity.class));
-                mNavigationView.getMenu().findItem(mPrevSelectedId).setChecked(true);
-                return;
         }
 
         final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(4));
@@ -197,5 +193,12 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+    public void sendMessage(View view) {
+        Intent intent = new Intent(this, WaterQualityActivity.class);
+        //  EditText et = (EditText) getActivity().findViewById(R.id.editText);
+        // String locationMsg = provinceSpinner.getSelectedItem().toString()+citySpinner.getSelectedItem().toString()+et.getText().toString();
+        // intent.putExtra(EXTRA_MESSAGE, locationMsg);
+        startActivity(intent);
     }
 }

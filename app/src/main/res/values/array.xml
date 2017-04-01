@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="provinces_array">
-        <item>北京市</item>
-        <item>天津市</item>
-        <item>上海市</item>
-        <item>重庆市</item>
-        <item>浙江省</item>
-        <item>江苏省</item>
-        <item>安徽省</item>
-        <item>江西省</item>
+    <string-array name="service">
+        <item>请选择需要的服务</item>
+        <item>维修</item>
+        <item>更换</item>
+    </string-array>
+    <string-array name="brand">
+        <item>请选择净水器品牌</item>
+        <item>美的</item>
+        <item>格里</item>
+        <item>海尔</item>
+        <item>其他</item>
+    </string-array>
+    <string-array name="time">
+        <item>请选择安装时间</item>
+        <item>3个月</item>
+        <item>半年</item>
+        <item>1年</item>
+    </string-array>
+    <string-array name="changetime">
+        <item>请选择最新换芯时间</item>
+        <item>3个月</item>
+        <item>半年</item>
     </string-array>
 </resources>

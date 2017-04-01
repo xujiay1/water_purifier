@@ -16,21 +16,4 @@
 
     </group>
 
-    <item android:title="Other">
-        <menu>
-            <group android:checkableBehavior="none">
-                <item
-                    android:checkable="true"
-                    android:id="@+id/nav_5"
-                    android:icon="@drawable/ic_nav_settings"
-                    android:title="Settings" />
-                <item
-                    android:checkable="true"
-                    android:id="@+id/nav_6"
-                    android:icon="@drawable/ic_person"
-                    android:title="About Us" />
-            </group>
-        </menu>
-    </item>
-
 </menu>

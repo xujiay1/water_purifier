@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import xebia.ismail.water_purifier.R;
 
@@ -27,7 +26,7 @@ public class TabGeometry extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.geometry_cube, container, false);
+        View v = inflater.inflate(R.layout.fragment_main, container, false);
 
 
 

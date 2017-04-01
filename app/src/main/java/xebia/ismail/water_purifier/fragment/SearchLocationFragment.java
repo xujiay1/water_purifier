@@ -9,15 +9,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.TextView;
 
-import xebia.ismail.water_purifier.MainActivity;
 import xebia.ismail.water_purifier.R;
 
 /**
  * Created by Admin on 3/13/2017.
  */
-public class HomeFragment extends Fragment {
+public class SearchLocationFragment extends Fragment {
 
     private Spinner provinceSpinner = null;  //省级（省、直辖市）
     private Spinner citySpinner = null;     //地级市
@@ -29,10 +27,11 @@ public class HomeFragment extends Fragment {
 
 
     //省级选项值
-    private String[] province = new String[] {"北京","上海","天津","广东"};//,"重庆","黑龙江","江苏","山东","浙江","香港","澳门"};
+    private String[] province = new String[] {"请选择省份","北京","上海","天津","广东"};//,"重庆","黑龙江","江苏","山东","浙江","香港","澳门"};
     //地级选项值
     private String[][] city = new String[][]
             {
+                    {"请选择市/区"},
                     { "东城区", "西城区", "崇文区", "宣武区", "朝阳区", "海淀区", "丰台区", "石景山区", "门头沟区", "房山区", "通州区", "顺义区", "大兴区", "昌平区", "平谷区", "怀柔区", "密云县", "延庆县" },
                     { "长宁区", "静安区", "普陀区", "闸北区", "虹口区" },
                     { "和平区", "河东区", "河西区", "南开区", "河北区", "红桥区", "塘沽区", "汉沽区", "大港区", "东丽区" },
@@ -73,7 +72,7 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.tab_maps, container, false);
+        View v = inflater.inflate(R.layout.fragment_searchlocation, container, false);
         return v;
     }
 
@@ -91,9 +90,9 @@ public class HomeFragment extends Fragment {
         //绑定适配器和值
         provinceAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, province);
         provinceSpinner.setAdapter(provinceAdapter);
-        provinceSpinner.setSelection(1,true);  //设置默认选中项，此处为默认选中第4个值
+        provinceSpinner.setSelection(0,true);  //设置默认选中项，此处为默认选中第4个值
 
-        cityAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, city[3]);
+        cityAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, city[0]);
         citySpinner.setAdapter(cityAdapter);
         citySpinner.setSelection(0,true);  //默认选中第0个
 
@@ -148,5 +147,8 @@ public class HomeFragment extends Fragment {
             }
         });*/
     }
+
+
+
 }
 
