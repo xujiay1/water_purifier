@@ -128,10 +128,6 @@ public class MainActivity extends AppCompatActivity
             //startActivity(new Intent(this, SettingsActivity.class));
             //mNavigationView.getMenu().findItem(mPrevSelectedId).setChecked(true);
             //return;
-            case R.id.nav_6:
-                startActivity(new Intent(this, AboutActivity.class));
-                mNavigationView.getMenu().findItem(mPrevSelectedId).setChecked(true);
-                return;
         }
 
         final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, dp(4));
