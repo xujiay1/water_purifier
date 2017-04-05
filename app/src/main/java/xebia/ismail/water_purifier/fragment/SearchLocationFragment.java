@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import xebia.ismail.water_purifier.R;
@@ -19,23 +20,30 @@ public class SearchLocationFragment extends Fragment {
 
     private Spinner provinceSpinner = null;  //省级（省、直辖市）
     private Spinner citySpinner = null;     //地级市
-    private Spinner countySpinner = null;    //县级（区、县、县级市）
     ArrayAdapter<String> provinceAdapter = null;  //省级适配器
     ArrayAdapter<String> cityAdapter = null;    //地级适配器
-    ArrayAdapter<String> countyAdapter = null;    //县级适配器
     static int provincePosition = 3;
+    private EditText community;
 
 
     //省级选项值
-    private String[] province = new String[] {"请选择省份","北京","上海","天津","广东"};//,"重庆","黑龙江","江苏","山东","浙江","香港","澳门"};
+    private String[] province = new String[] {"请选择省份","北京市","上海市","浙江省","山东省","广东省","陕西省"};//,"重庆","黑龙江","江苏","山东","浙江","香港","澳门"};
     //地级选项值
     private String[][] city = new String[][]
             {
                     {"请选择市/区"},
-                    { "东城区", "西城区", "崇文区", "宣武区", "朝阳区", "海淀区", "丰台区", "石景山区", "门头沟区", "房山区", "通州区", "顺义区", "大兴区", "昌平区", "平谷区", "怀柔区", "密云县", "延庆县" },
-                    { "长宁区", "静安区", "普陀区", "闸北区", "虹口区" },
-                    { "和平区", "河东区", "河西区", "南开区", "河北区", "红桥区", "塘沽区", "汉沽区", "大港区", "东丽区" },
-                    { "广州", "深圳", "韶关" }//,"珠海","汕头","佛山","湛江","肇庆","江门","茂名","惠州","梅州", "汕尾","河源","阳江","清远","东莞","中山","潮州","揭阳","云浮"}
+                    {"北京市"},
+                    {"上海市"},
+                    {"杭州市"},
+                    {"青岛市"},
+                    {"深圳市"},
+                    {"西安市"}
+
+
+                   // { "北京市", "西城区", "崇文区", "宣武区", "朝阳区", "海淀区", "丰台区", "石景山区", "门头沟区", "房山区", "通州区", "顺义区", "大兴区", "昌平区", "平谷区", "怀柔区", "密云县", "延庆县" },
+              //      { "长宁区", "静安区", "普陀区", "闸北区", "虹口区" },
+               //     { "和平区", "河东区", "河西区", "南开区", "河北区", "红桥区", "塘沽区", "汉沽区", "大港区", "东丽区" },
+              //      { "广州", "深圳", "韶关" }//,"珠海","汕头","佛山","湛江","肇庆","江门","茂名","惠州","梅州", "汕尾","河源","阳江","清远","东莞","中山","潮州","揭阳","云浮"}
             };
 
     //县级选项值
@@ -66,6 +74,8 @@ public class SearchLocationFragment extends Fragment {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);setSpinner();
+        community = (EditText) getActivity().findViewById(R.id.editText);
+        community.setText("求是村");
     }
 
 
@@ -73,6 +83,7 @@ public class SearchLocationFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_searchlocation, container, false);
+
         return v;
     }
 

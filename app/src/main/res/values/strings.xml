@@ -34,7 +34,16 @@
     <string name="layout">Layout</string>
     <string name="deskripsi">A rose is a woody perennial flowering plant of the genus Rosa, in the family Rosaceae, or the flower it bears. There are over a hundred species and thousands of cultivars. They form a group of plants that can be erect shrubs.</string>
     <string name="nav_home">净水商城</string>
-
-    <string name="aboutme">Content</string>
+    <string name="verylowtds">您的用水可溶解物质含量较低，可考虑选购超滤/纳滤等净水机对用水进行过滤，提升生活品质。</string>
+    <string name="lowtds">您的用水可溶解物质含量较低，可考虑选购超滤/纳滤等净水机对用水进行过滤，提升生活品质。</string>
+    <string name="normaltds">您的用水可溶解物质含量一般，可考虑使用超滤/反渗透净水机对用水进行过滤，保障用水安全。</string>
+    <string name="hightds">您的用水可溶解物质含量较多，建议使用反渗透净水机/软水机对用水进行过滤，确保用水安全。</string>
+    <string name="veryhightds">您的用水可溶解物质含量很多，建议使用反渗透净水机/软水机对用水进行过滤改善您家的水。</string>
+    <string name="extremelyhightds">您的用水可溶解物质含量很多，建议使用反渗透净水机/软水机对用水进行过滤改善您家的水。</string>
+    <string name="verylowcl">余氯含量很少，建议使用含活性炭滤芯的超滤净水器，改善口感，进一步提升生活品质。</string>
+    <string name="lowcl">余氯含量较少，建议使用含活性炭滤芯的净水机改善您家的水。</string>
+    <string name="normalcl">余氯含量较多，建议使用反渗透净水机改善您家的水。</string>
+    <string name="highcl">余氯含量较多，建议使用反渗透净水机改善您家的水。</string>
+    <string name="recommand">根据TDS和余氯含量，建议选购含有活性炭的超滤净水设备。确保用水安全。</string>
 
 </resources>
