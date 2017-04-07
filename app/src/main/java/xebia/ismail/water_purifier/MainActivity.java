@@ -226,11 +226,7 @@ public class MainActivity extends AppCompatActivity
     }
     public void sendMessage(View view) {
 
-
-
         new AsyncRetrieve().execute();
-
-
 
     }
     private class AsyncRetrieve extends AsyncTask<String, String, String> {
@@ -243,7 +239,7 @@ public class MainActivity extends AppCompatActivity
         protected void onPreExecute() {
             super.onPreExecute();
 
-            pdLoading.setMessage("\tLoading...");
+            pdLoading.setMessage("\t载入中...");
             pdLoading.setCancelable(false);
             pdLoading.show();
 
@@ -262,39 +258,30 @@ public class MainActivity extends AppCompatActivity
                 return e.toString();
             }
             try {
-
                 // Setup HttpURLConnection class to send and receive data from php
                 conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(READ_TIMEOUT);
                 conn.setConnectTimeout(CONNECTION_TIMEOUT);
                 conn.setRequestMethod("GET");
-
                 // setDoOutput to true as we recieve data from json file
                 conn.setDoOutput(true);
-
             } catch (IOException e1) {
                 // TODO Auto-generated catch block
                 e1.printStackTrace();
                 return e1.toString();
             }
-
             try {
-
                 int response_code = conn.getResponseCode();
-
                 // Check if successful connection made
                 if (response_code == HttpURLConnection.HTTP_OK) {
-
                     // Read data sent from server
                     InputStream input = conn.getInputStream();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(input));
                     StringBuilder result = new StringBuilder();
                     String line;
-
                     while ((line = reader.readLine()) != null) {
                         result.append(line);
                     }
-
                     // Pass data to onPostExecute method
                     return (result.toString());
 
@@ -335,7 +322,6 @@ public class MainActivity extends AppCompatActivity
                 citySpinner = (Spinner) MainActivity.this.findViewById(R.id.spin_city);
                 community = (EditText) MainActivity.this.findViewById(R.id.editText);
                 String input = provinceSpinner.getSelectedItem().toString()+citySpinner.getSelectedItem().toString()+community.getText();
-                System.out.println("input=="+input);
                 boolean found = false;
                 for (CommunityData temp : cd) {
                     if (temp.getLocation().contains(input)){
@@ -351,15 +337,6 @@ public class MainActivity extends AppCompatActivity
                 if(!found) {
                     Toast.makeText(MainActivity.this, "没有找到结果，请重试！", Toast.LENGTH_LONG).show();
                 }
-
-
-
-
-
-
-
-
         }
-
     }
 }

@@ -78,7 +78,6 @@ public class SearchLocationFragment extends Fragment {
         community.setText("求是村");
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
