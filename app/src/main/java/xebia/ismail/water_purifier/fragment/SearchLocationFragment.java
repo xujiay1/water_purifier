@@ -11,6 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+
 import xebia.ismail.water_purifier.R;
 
 /**
@@ -20,62 +28,32 @@ public class SearchLocationFragment extends Fragment {
 
     private Spinner provinceSpinner = null;  //省级（省、直辖市）
     private Spinner citySpinner = null;     //地级市
+
+    private JSONObject jsonObject = null;
+
     ArrayAdapter<String> provinceAdapter = null;  //省级适配器
     ArrayAdapter<String> cityAdapter = null;    //地级适配器
+
+    private Map<String, String[]> cityMap = new HashMap<String, String[]>();//key:省p---value:市n  value是一个集合
+    private Map<String, String[]> areaMap = new HashMap<String, String[]>();//key:市n---value:区s    区也是一个集合
+
     static int provincePosition = 3;
     private EditText community;
 
-
     //省级选项值
-    private String[] province = new String[] {"请选择省份","北京市","上海市","浙江省","山东省","广东省","陕西省"};//,"重庆","黑龙江","江苏","山东","浙江","香港","澳门"};
-    //地级选项值
-    private String[][] city = new String[][]
-            {
-                    {"请选择市/区"},
-                    {"北京市"},
-                    {"上海市"},
-                    {"杭州市"},
-                    {"青岛市"},
-                    {"深圳市"},
-                    {"西安市"}
+    private String[] province = null;
 
-
-                   // { "北京市", "西城区", "崇文区", "宣武区", "朝阳区", "海淀区", "丰台区", "石景山区", "门头沟区", "房山区", "通州区", "顺义区", "大兴区", "昌平区", "平谷区", "怀柔区", "密云县", "延庆县" },
-              //      { "长宁区", "静安区", "普陀区", "闸北区", "虹口区" },
-               //     { "和平区", "河东区", "河西区", "南开区", "河北区", "红桥区", "塘沽区", "汉沽区", "大港区", "东丽区" },
-              //      { "广州", "深圳", "韶关" }//,"珠海","汕头","佛山","湛江","肇庆","江门","茂名","惠州","梅州", "汕尾","河源","阳江","清远","东莞","中山","潮州","揭阳","云浮"}
-            };
-
-    //县级选项值
-   /* private String[][][] county = new String[][][]
-            {
-                    {   //北京
-                            {"无"},{"无"},{"无"},{"无"},{"无"},{"无"},{"无"},{"无"},{"无"},{"无"},
-                            {"无"},{"无"},{"无"},{"无"},{"无"},{"无"},{"无"},{"无"}
-                    },
-                    {    //上海
-                            {"无"},{"无"},{"无"},{"无"},{"无"}
-                    },
-                    {    //天津
-                            {"无"},{"无"},{"无"},{"无"},{"无"},{"无"},{"无"},{"无"},{"无"},{"无"}
-                    },
-                    {    //广东
-                            {"海珠区","荔湾区","越秀区","白云区","萝岗区","天河区","黄埔区","花都区","从化市","增城市","番禺区","南沙区"}, //广州
-                            {"宝安区","福田区","龙岗区","罗湖区","南山区","盐田区"}, //深圳
-                            {"武江区","浈江区","曲江区","乐昌市","南雄市","始兴县","仁化县","翁源县","新丰县","乳源县"}  //韶关
-                    }
-            };
-            */
- //   private TextView one;
-   // private TextView twe;
-   // private TextView three;
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        setHasOptionsMenu(true);setSpinner();
+        setHasOptionsMenu(true);
+
+        initJsonData();//初始化json数据
+        initDatas();
+        setSpinner();
+
         community = (EditText) getActivity().findViewById(R.id.editText);
-        community.setText("求是村");
     }
 
     @Override
@@ -86,6 +64,72 @@ public class SearchLocationFragment extends Fragment {
         return v;
     }
 
+       //初始化省市区数据
+    private void initDatas() {
+        try {
+            JSONArray jsonArray = jsonObject.getJSONArray("citylist");//获取整个json数据
+            province = new String[jsonArray.length()];//封装数据
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonP = jsonArray.getJSONObject(i);//jsonArray转jsonObject
+                String provStr = jsonP.getString("p");//获取所有的省
+                province[i] = provStr;//封装所有的省
+                JSONArray jsonCity = null;
+
+                try {
+                    jsonCity = jsonP.getJSONArray("c");//在所有的省中取出所有的市，转jsonArray
+                } catch (Exception e) {
+                    continue;
+                }
+                //所有的市
+                String[] allCity = new String[jsonCity.length()];//所有市的长度
+                for (int c = 0; c < jsonCity.length(); c++) {
+                    JSONObject jsonCy = jsonCity.getJSONObject(c);//转jsonObject
+                    String cityStr = jsonCy.getString("n");//取出所有的市
+                    allCity[c] = cityStr;//封装市集合
+
+                    JSONArray jsonArea = null;
+                    try {
+                        jsonArea = jsonCy.getJSONArray("a");//在从所有的市里面取出所有的区,转jsonArray
+                    } catch (Exception e) {
+                        continue;
+                    }
+                    String[] allArea = new String[jsonArea.length()];//所有的区
+                    for (int a = 0; a < jsonArea.length(); a++) {
+                        JSONObject jsonAa = jsonArea.getJSONObject(a);
+                        String areaStr = jsonAa.getString("s");//获取所有的区
+                        allArea[a] = areaStr;//封装起来
+                    }
+
+                    areaMap.put(cityStr, allArea);//某个市取出所有的区集合
+
+
+                }
+                cityMap.put(provStr, allCity);//某个省取出所有的市,
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        jsonObject = null;//清空所有的数据
+    }
+
+    /**
+     * 从assert文件夹中获取json数据
+     */
+    private void initJsonData() {
+        try {
+            StringBuffer sb = new StringBuffer();
+            InputStream is = getResources().getAssets().open("city.json");//打开json数据
+            byte[] by = new byte[is.available()];//转字节
+            int len = -1;
+            while ((len = is.read(by)) != -1) {
+                sb.append(new String(by, 0, len, "gb2312"));//根据字节长度设置编码
+            }
+            is.close();//关闭流
+            jsonObject = new JSONObject(sb.toString());//为json赋值
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /*
  * 设置下拉框
  */
@@ -98,11 +142,22 @@ public class SearchLocationFragment extends Fragment {
        // three = (TextView) findViewById(R.id.three);
 
         //绑定适配器和值
-        provinceAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, province);
+        provinceAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item);
+        for (int i = 0; i < province.length; i++)
+        {
+            provinceAdapter.add(province[i]);//添加每一个省
+        }
+        provinceAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);//按下的效果
         provinceSpinner.setAdapter(provinceAdapter);
         provinceSpinner.setSelection(0,true);  //设置默认选中项，此处为默认选中第4个值
 
-        cityAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, city[0]);
+        cityAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item);
+        String [] cities=cityMap.get(province[0]);
+        for(int i=0;i<cities.length;i++)
+        {
+            cityAdapter.add(cities[i]);
+        }
+        cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         citySpinner.setAdapter(cityAdapter);
         citySpinner.setSelection(0,true);  //默认选中第0个
 
@@ -119,14 +174,18 @@ public class SearchLocationFragment extends Fragment {
             {
                 //position为当前省级选中的值的序号
                 //将地级适配器的值改变为city[position]中的值
-                cityAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item, city[position]);
+                cityAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_item);
+
+                String [] cities=cityMap.get(province[position]);
+                for(int i=0;i<cities.length;i++)
+                {
+                    cityAdapter.add(cities[i]);
+                }
+
                 // 设置二级下拉列表的选项内容适配器
+                cityAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 citySpinner.setAdapter(cityAdapter);
                 provincePosition = position;    //记录当前省级序号，留给下面修改县级适配器时用
-                String city = provinceSpinner.getSelectedItem().toString();
-                String  province= citySpinner.getSelectedItem().toString();
-                Log.d("zzz0", city);
-                Log.d("zzz1", province);
                // one.setText(city);
               //  twe.setText(province);
             }
