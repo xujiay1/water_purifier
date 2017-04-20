@@ -22,11 +22,12 @@
 
         <com.pixplicity.fontview.FontAppCompatTextView
             style="@style/FontTextViewStyle"
+            android:id="@+id/headeruname"
             android:layout_width="wrap_content"
             android:textSize="14dp"
             android:textStyle="bold"
             android:layout_height="wrap_content"
-            android:text="用户名" />
+            android:text="请登录" />
 
         <com.pixplicity.fontview.FontAppCompatTextView
             style="@style/FontTextViewStyle"

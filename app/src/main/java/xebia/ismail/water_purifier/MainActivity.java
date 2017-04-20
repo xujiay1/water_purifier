@@ -38,15 +38,17 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.StringTokenizer;
 
+import xebia.ismail.water_purifier.fragment.LoginFragment;
 import xebia.ismail.water_purifier.fragment.SearchLocationFragment;
 import xebia.ismail.water_purifier.fragment.FilterManagerFragment;
 import xebia.ismail.water_purifier.fragment.TabGeometry;
+import xebia.ismail.water_purifier.fragment.UserInfoFragment;
 import xebia.ismail.water_purifier.fragment.VolumeFragment;
 
 /* Ismail Xebia */
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     private static final String SELECTED_ITEM_ID = "SELECTED_ITEM_ID";
     private final Handler mDrawerHandler = new Handler();
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity
     public final static String EXTRA_MESSAGETDS = "value.tds";
     public final static String EXTRA_MESSAGECL = "value.cl";
     public final static String EXTRA_MESSAGELOCATION = "value.location";
+    public final static String EXTRA_MESSAGEFRAGMENT = "value.main";
     private String data = "";
     // CONNECTION_TIMEOUT and READ_TIMEOUT are in milliseconds
     public static final int CONNECTION_TIMEOUT = 10000;
@@ -67,6 +70,10 @@ public class MainActivity extends AppCompatActivity
     private Spinner citySpinner = null;     //地级市
     private EditText community;
 
+
+    public NavigationView getNavigationView() {
+        return mNavigationView;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -138,6 +145,7 @@ public class MainActivity extends AppCompatActivity
     private void navigate(final int itemId) {
         final View elevation = findViewById(R.id.elevation);
         Fragment navFragment = null;
+        AccountManager accountManager=AccountManager.getInstance();
         switch (itemId) {
             case R.id.nav_1:
                 mPrevSelectedId = itemId;
@@ -154,7 +162,22 @@ public class MainActivity extends AppCompatActivity
                 setTitle("滤芯管理");
                 navFragment = new FilterManagerFragment();
                 break;
-            //case R.id.nav_5:
+            case R.id.nav_4:
+                mPrevSelectedId = itemId;
+                if(accountManager.isLogined()) {
+                    setTitle("用户信息");
+                    UserInfoFragment userInfoFragment = new UserInfoFragment();
+                    userInfoFragment.setNavigationView(mNavigationView);
+                    navFragment=userInfoFragment;
+                }
+                else {
+                    setTitle("登录/注册");
+                    LoginFragment loginFragment = new LoginFragment();
+                    loginFragment.setNavigationView(mNavigationView);
+                    navFragment=loginFragment;
+
+                }
+            //case R.id.nav_5:8
             //startActivity(new Intent(this, SettingsActivity.class));
             //mNavigationView.getMenu().findItem(mPrevSelectedId).setChecked(true);
             //return;

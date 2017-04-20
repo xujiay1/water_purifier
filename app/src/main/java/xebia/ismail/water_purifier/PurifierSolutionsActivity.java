@@ -5,11 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,8 +32,15 @@ public class PurifierSolutionsActivity extends AppCompatActivity {
     private TextView locationTextView;
     private TextView tdsTextView;
     private TextView clTextView;
+    private EditText lowerPriceEditText;
+    private EditText upperPriceEditText;
+    private Button button;
+    int lowerPrice;
+    int upperPrice;
+    int currentPid;
     GridView androidGridView;
     ArrayList<String> check = new ArrayList<String>();
+    ArrayList<Integer> pidAl = new ArrayList<Integer>();
     ArrayList<String> namesAl = new ArrayList<String>();
     ArrayList<Integer> ImageIdAl = new ArrayList<Integer>();
     ArrayList<Integer> pricesAL = new ArrayList<Integer>();
@@ -47,13 +59,13 @@ public class PurifierSolutionsActivity extends AppCompatActivity {
             "海尔\n中央净水机 HU601-500 前置 超滤 不锈钢机身",
     } ;
 
-    String[] product_lifes = {
-            "699",
-            "1869",
-            "1549",
-            "199",
-            "4999",
-            "899",
+    int[] product_lifes = {
+            699,
+            1869,
+            1549,
+            199,
+            4999,
+            899,
     } ;
     String[] principles = {
             "优质阀头,大流量,水压可视，高精度不锈滤网，安全稳压更可靠，70年寿命",
@@ -119,6 +131,54 @@ public class PurifierSolutionsActivity extends AppCompatActivity {
         tdsTextView.setText(String.valueOf(tds));
         clTextView.setText(String.valueOf(cl));
 
+        button = (Button) findViewById(R.id.button4);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        lowerPrice=0;
+        upperPrice=5000;
+        lowerPriceEditText = (EditText) findViewById(R.id.editText_lb);
+        upperPriceEditText = (EditText) findViewById(R.id.editText_ub);
+
+        lowerPriceEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lowerPrice=Integer.parseInt(s.toString());
+                updateGridViewData();
+            }
+        });
+
+        upperPriceEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                upperPrice=Integer.parseInt(s.toString());
+                updateGridViewData();
+            }
+        });
 
         CheckBoxGroupView cbGroup = (CheckBoxGroupView) findViewById(R.id.cbGroup);
         CheckBox cb1 = new CheckBox(this);
@@ -292,9 +352,6 @@ public class PurifierSolutionsActivity extends AppCompatActivity {
         cbGroup.put(cb9);
         cbGroup.getCheckedIds().toString();
 
-
-
-
         CustomGridViewActivity adapterViewAndroid = new CustomGridViewActivity(PurifierSolutionsActivity.this, namesAl, ImageIdAl, pricesAL);
         androidGridView=(GridView)findViewById(R.id.grid_view_image_text);
         androidGridView.setAdapter(adapterViewAndroid);
@@ -306,6 +363,7 @@ public class PurifierSolutionsActivity extends AppCompatActivity {
                 final Dialog dialog = new Dialog(context);
                 dialog.setContentView(R.layout.customdialog);
                 dialog.setTitle("产品介绍");
+                currentPid=i;
 
                 // set the custom dialog components - text, image and button
                 TextView textName = (TextView) dialog.findViewById(R.id.product_name);
@@ -318,7 +376,7 @@ public class PurifierSolutionsActivity extends AppCompatActivity {
                 textPrice.setText("价格："+pricesAL.get(i));
 
                 TextView textLife= (TextView) dialog.findViewById(R.id.product_life);
-                textLife.setText("生命成本："+product_lifesAL.get(i));
+                textLife.setText("生命成本："+product_lifesAL.get(i).toString());
 
                 TextView textprinciple = (TextView) dialog.findViewById(R.id.principle);
                 textprinciple.setText("工作原理："+principlesAL.get(i));
@@ -328,8 +386,14 @@ public class PurifierSolutionsActivity extends AppCompatActivity {
                 dialogButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(PurifierSolutionsActivity.this, "已经添加到购物车", Toast.LENGTH_LONG).show();
-                        dialog.dismiss();
+                        AccountManager accountManager=AccountManager.getInstance();
+                        if(accountManager.addToCart(currentPid)) {
+                            Toast.makeText(PurifierSolutionsActivity.this, "产品已经添加到购物车", Toast.LENGTH_LONG).show();
+                            dialog.dismiss();
+                        }
+                        else {
+                            Toast.makeText(PurifierSolutionsActivity.this, "请先登录", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
 
@@ -349,6 +413,7 @@ public class PurifierSolutionsActivity extends AppCompatActivity {
 
 
     private void updateGridViewData() {
+        pidAl.clear();
         namesAl.clear();
         ImageIdAl.clear();
         product_lifesAL.clear();
@@ -357,11 +422,12 @@ public class PurifierSolutionsActivity extends AppCompatActivity {
           for (int i = 0; i<check.size();i++){
             for(int j = 0;j<property.length;j++){
                 for(int k =0;k<property[j].length;k++){
-                    if (check.get(i).toString().equals(property[j][k])){
+                    if (check.get(i).toString().equals(property[j][k])&&product_lifes[j]>=lowerPrice&&product_lifes[j]<=upperPrice){
+                        pidAl.add(j);
                         namesAl.add(gridViewString[j]);
                         ImageIdAl.add(gridViewImageId[j]);
                         pricesAL.add(prices[j]);
-                        product_lifesAL.add(product_lifes[j]);
+                        product_lifesAL.add(product_lifes[j]+"");
                         principlesAL.add(principles[j]);
                         break;
                     }

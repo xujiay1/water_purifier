@@ -1,6 +1,7 @@
 package xebia.ismail.water_purifier;
 
 import android.content.Intent;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -8,7 +9,7 @@ import android.widget.TextView;
 
 import xebia.ismail.water_purifier.fragment.DashboardView;
 
-public class WaterQualityActivity extends AppCompatActivity  implements View.OnClickListener {
+public class WaterQualityActivity extends AppCompatActivity implements View.OnClickListener{
     private DashboardView mDashboardView;
     private PublicTitleBar titleBar;
     private TextView tdsTextview;
@@ -94,11 +95,11 @@ public class WaterQualityActivity extends AppCompatActivity  implements View.OnC
 
             case R.id.dashboard_view:
 
-
                 break;
 
         }
     }
+
     public void sendMessage(View view) {
         Intent intent = new Intent(this, PurifierSolutionsActivity.class);
         //  EditText et = (EditText) getActivity().findViewById(R.id.editText);

@@ -38,7 +38,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/textView77"
                 android:layout_width="187dp"
                 android:layout_height="wrap_content"
                 android:text="您当前查询的小区："
@@ -122,10 +122,40 @@
 
         </xebia.ismail.water_purifier.CheckBoxGroupView>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="产品生命周期成本"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/editText_lb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:inputType="number"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="~"/>
+
+            <EditText
+                android:id="@+id/editText_ub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5000"
+                android:inputType="number"/>
+        </LinearLayout>
+
         <GridView
             android:id="@+id/grid_view_image_text"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="250dp"
             android:layout_margin="10dp"
             android:columnWidth="110dp"
             android:gravity="center"
