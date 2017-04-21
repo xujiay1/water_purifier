@@ -135,6 +135,14 @@ public class PurifierSolutionsActivity extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                AccountManager accountManager=AccountManager.getInstance();
+                if(accountManager.isLogined()){
+                    Intent intent=new Intent(PurifierSolutionsActivity.this, CartActivity.class);
+                    startActivity(intent);
+                }
+                else {
+                    Toast.makeText(PurifierSolutionsActivity.this, "请先登录", Toast.LENGTH_LONG).show();
+                }
 
             }
         });

@@ -49,6 +49,7 @@ public class SearchLocationFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         setHasOptionsMenu(true);
 
+        getActivity().setTitle("水质查询");
         initJsonData();//初始化json数据
         initDatas();
         setSpinner();

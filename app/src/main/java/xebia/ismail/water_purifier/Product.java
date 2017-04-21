@@ -26,4 +26,18 @@ public class Product {
         this.category=category;
         this.imageid=imageid;
     }
+
+    public int getId(){return id;}
+
+    public String getBrand(){return brand;}
+
+    public String getType(){return type;}
+
+    public String getFeature(){return feature;}
+
+    public double getPrice(){return price;}
+
+    public double getLifecyclePrice(){return lifecyclePrice;}
+
+    public int getImageid(){return imageid;}
 }

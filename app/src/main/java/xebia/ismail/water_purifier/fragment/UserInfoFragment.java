@@ -1,5 +1,6 @@
 package xebia.ismail.water_purifier.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -15,7 +16,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import xebia.ismail.water_purifier.AccountManager;
+import xebia.ismail.water_purifier.CartActivity;
+import xebia.ismail.water_purifier.MainActivity;
 import xebia.ismail.water_purifier.R;
+import xebia.ismail.water_purifier.WaterQualityActivity;
 
 
 public class UserInfoFragment extends Fragment {
@@ -43,6 +47,13 @@ public class UserInfoFragment extends Fragment {
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        TextView tv1 =(TextView)getActivity().findViewById(R.id.balance);
+        tv1.setText("余额: "+accountManager.getBalance());
+    }
+
+    @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
@@ -52,7 +63,8 @@ public class UserInfoFragment extends Fragment {
         button_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                Intent intent = new Intent(getActivity(), CartActivity.class);
+                startActivity(intent);
             }
         });
 

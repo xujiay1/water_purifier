@@ -75,6 +75,7 @@ public class ProductManager {
 
     public ProductManager()
     {
+        listProducts=new HashMap<>();
         for(int i=0;i<brand.length;i++)
         {
             Product product=new Product(i,brand[i],type[i],principles[i],prices[i],
@@ -83,7 +84,7 @@ public class ProductManager {
         }
     }
 
-    public ProductManager getInstance()
+    public static ProductManager getInstance()
     {
         if(productManager==null) {
             productManager = new ProductManager();
@@ -95,5 +96,10 @@ public class ProductManager {
     public Product getProduct(int pid)
     {
         return listProducts.get(pid);
+    }
+
+    public int getProductCount()
+    {
+        return listProducts.size();
     }
 }

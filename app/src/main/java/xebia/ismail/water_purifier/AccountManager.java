@@ -65,4 +65,24 @@ public class AccountManager {
         }
     }
 
+    public ArrayList<Integer> getCart()
+    {
+        return cart;
+    }
+
+    public boolean purchase(ArrayList<Integer> pids, double price)
+    {
+        if(price<=balance){
+            balance-=price;
+            for(int i=0;i<pids.size();i++) {
+                cart.remove(pids.get(i));
+            }
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
 }
