@@ -40,7 +40,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/textviewlocation"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
@@ -59,7 +59,7 @@
 
                 <android.support.v7.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="6dp"
                     android:layout_marginBottom="6dp"
                     android:layout_marginLeft="6dp"
@@ -67,7 +67,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <TextView
@@ -82,13 +82,13 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="50dp"
+                            android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/textView6"
+                                android:id="@+id/tds"
                                 android:layout_width="70dp"
                                 android:layout_height="40dp"
                                 android:layout_marginRight="10dp"
@@ -96,12 +96,13 @@
                                 android:gravity="center_vertical"
                                 android:text="TDS:146mg/L"
                                 android:textAlignment="viewEnd"
-                                android:textColor="@color/color_orange" />
+                                android:textColor="@color/color_orange"
+                                android:textSize="12sp" />
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/tdsText"
                                 android:layout_width="wrap_content"
-                                android:layout_height="40dp"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center_vertical"
                                 android:text="TextView" />
@@ -109,13 +110,13 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_margin="5dp"
                             android:layout_weight="1"
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/textView6"
+                                android:id="@+id/cl"
                                 android:layout_width="70dp"
                                 android:layout_height="40dp"
                                 android:layout_marginRight="10dp"
@@ -123,12 +124,13 @@
                                 android:gravity="center_vertical"
                                 android:text="余氟: 0.08mg/L"
                                 android:textAlignment="viewEnd"
-                                android:textColor="@color/color_orange" />
+                                android:textColor="@color/color_orange"
+                                android:textSize="12sp" />
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/clText"
                                 android:layout_width="wrap_content"
-                                android:layout_height="40dp"
+                                android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:gravity="center_vertical"
                                 android:text="TextView" />
@@ -169,7 +171,7 @@
                             android:orientation="horizontal">
 
                             <TextView
-                                android:id="@+id/textView5"
+                                android:id="@+id/recommand"
                                 android:layout_width="wrap_content"
                                 android:layout_height="40dp"
                                 android:layout_weight="1"
@@ -188,8 +190,11 @@
                     android:layout_margin="40dp"
                     android:layout_marginLeft="40dp"
                     android:layout_marginRight="40dp"
+                    android:background="@color/color_blue"
                     android:onClick="sendMessage"
-                    android:text="买买买" />
+                    android:text="制定净水方案"
+                    android:textColor="@color/cardview_light_background"
+                    android:textSize="18sp" />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
 
